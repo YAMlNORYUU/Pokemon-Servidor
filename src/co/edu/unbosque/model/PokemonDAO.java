@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class PokemonDAO {
 	private ArrayList<PokemonDTO> lista;
-
+	private ArrayList<PokemonDTO> pc;
 	public PokemonDAO() {
 		lista = new ArrayList<PokemonDTO>();
 	}

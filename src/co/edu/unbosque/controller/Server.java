@@ -46,10 +46,48 @@ public class Server implements Runnable {
 
 
           if (operacao == 1) {
+System.out.println("Opcion de los 6");
+resultado.writeInt(lista.get(aleatorio).getId());
+resultado.writeUTF(lista.get(aleatorio).getNombre());
+resultado.writeInt(lista.get(aleatorio).getId_general());
+resultado.writeUTF(lista.get(aleatorio).getTipo());
+resultado.writeUTF(lista.get(aleatorio).getPs());
+resultado.writeUTF(lista.get(aleatorio).getAtaque());
+resultado.writeUTF(lista.get(aleatorio).getDefensa());
+resultado.writeUTF(lista.get(aleatorio).getAtaque_especial());
+resultado.writeUTF(lista.get(aleatorio).getDefensa_especial());
+resultado.writeUTF(lista.get(aleatorio).getVelocidad());
+resultado.writeUTF(lista.get(aleatorio).getMote());
+resultado.writeUTF(lista.get(aleatorio).getMovimientos());
+resultado.writeInt(lista.get(aleatorio).getNivel());
 
-          
 
-          } else {
+
+resultado.flush();
+
+
+
+
+          }if (operacao == 2) { 
+        	  
+        	int aux = dados.readInt();
+        	int id = aux - 1;
+        	resultado.writeInt(lista.get(id).getId());
+        	resultado.writeUTF(lista.get(id).getNombre());
+        	resultado.writeInt(lista.get(id).getId_general());
+        	resultado.writeUTF(lista.get(id).getTipo());
+        	resultado.writeUTF(lista.get(id).getPs());
+        	resultado.writeUTF(lista.get(id).getAtaque());
+        	resultado.writeUTF(lista.get(id).getDefensa());
+        	resultado.writeUTF(lista.get(id).getAtaque_especial());
+        	resultado.writeUTF(lista.get(id).getDefensa_especial());
+        	resultado.writeUTF(lista.get(id).getVelocidad());
+        	resultado.writeUTF(lista.get(id).getMote());
+        	resultado.writeUTF(lista.get(id).getMovimientos());
+        	resultado.writeInt(lista.get(id).getNivel());
+        	
+        	  
+          }else {
 
              
 
@@ -64,28 +102,11 @@ public class Server implements Runnable {
 
       
           
-          resultado.writeInt(lista.get(aleatorio).getId());
-          resultado.writeUTF(lista.get(aleatorio).getNombre());
-          resultado.writeInt(lista.get(aleatorio).getId_general());
-          resultado.writeUTF(lista.get(aleatorio).getTipo());
-          resultado.writeUTF(lista.get(aleatorio).getPs());
-          resultado.writeUTF(lista.get(aleatorio).getAtaque());
-          resultado.writeUTF(lista.get(aleatorio).getDefensa());
-          resultado.writeUTF(lista.get(aleatorio).getAtaque_especial());
-          resultado.writeUTF(lista.get(aleatorio).getDefensa_especial());
-          resultado.writeUTF(lista.get(aleatorio).getVelocidad());
-          resultado.writeUTF(lista.get(aleatorio).getMote());
-          resultado.writeUTF(lista.get(aleatorio).getMovimientos());
-          resultado.writeInt(lista.get(aleatorio).getNivel());
-
-
-          
-          resultado.flush();
-
-          
           resultado.close();
           dados.close();
       } catch (IOException e) {
+          e.printStackTrace();
+      }catch (IndexOutOfBoundsException e) {
           e.printStackTrace();
       }
 		
