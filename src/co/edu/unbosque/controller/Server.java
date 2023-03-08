@@ -23,7 +23,7 @@ public class Server implements Runnable {
 
 	@Override
 	public void run() {
-        System.out.println("Nova conexao com o cliente " + this.cliente.getInetAddress().getHostAddress());
+        System.out.println("Nueva conexion ip " + this.cliente.getInetAddress().getHostAddress());
 //      System.out.println(con.getCiudades().get(0));
       
       
@@ -32,7 +32,7 @@ public class Server implements Runnable {
 
       int aleatorio =  rnd.nextInt(100);
       
-      System.out.println(lista.get(aleatorio).getNombre()+" Soy la monda asdasdas");
+
       double num1, num2, total = 0.0;
       int operacao;
       char opr = '\n';

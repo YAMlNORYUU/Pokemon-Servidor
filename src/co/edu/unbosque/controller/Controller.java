@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Iterator;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +17,7 @@ import co.edu.unbosque.model.PokemonDAO;
 public class Controller {
 
  private PokemonDAO dao;
-
+ String[] arr = {"Ala de acero", "Cola férrea", "Garra metal", "Danza lluvia", "Pulpocañón", "Torbellino", "Cortefuria", "Megacuerno", "Telaraña", "Ciclón", "Dragoaliento", "Enfado", "Chispa", "Electrocañón", "Bola sombra", "Mismo destino", "Pesadilla", "Rencor", "Día soleado", "Fuego sagrado", "Rueda fuego", "Nieve polvo", "Viento hielo", "Detección", "Golpe kárate (2ª gen.)", "Golpe roca", "Inversión", "Puño dinámico", "Tajo cruzado", "Tiro vital"};
 
 	 private  ServerSocket servidor;
 	 
@@ -31,6 +33,19 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
+	public String movimientos() {
+		String aux = "";
+		for (int i = 0; i < 4; i++) {
+			
+			  Random rand = new Random();
+
+		        // gera um número aleatório entre 1 e 19
+		        int randomNumber = rand.nextInt(19) + 1;
+		       aux += arr[randomNumber]+"  ";
+		}
+		
+		return aux;
+	}
 
 	public void iniciar() throws IOException {
 		leer_json();
@@ -38,18 +53,14 @@ public class Controller {
 		
 
 		
-		   System.out.println("Porta 12345 aberta!");
+		   System.out.println("Puerto 12345");
 
-	        // Aguarda alguém se conectar. A execução do servidor
-	        // fica bloqueada na chamada do método accept da classe
-	        // ServerSocket. Quando alguém se conectar ao servidor, o
-	        // método desbloqueia e retorna com um objeto da classe
-	        // Socket, que é uma porta da comunicação.
+	   
 	 
 
 	        while (true) {
 	            Socket cliente = (Socket) servidor.accept();
-	            // Cria uma thread do servidor para tratar a conexão
+	       
 	            
 
 	        	 Server  tratamento = new Server((java.net.Socket) cliente,dao.getLista());
@@ -59,7 +70,7 @@ public class Controller {
 	        
 	
 	
-	            // Inicia a thread para o cliente conectado
+	          
 	            t.start();
 	            
 	            System.out.println("chao");
@@ -77,6 +88,12 @@ public class Controller {
 			JSONArray array = (JSONArray) jsonObject.get("Pokemones");
 
 			for (int i = 0; i < array.size(); i++) {
+				
+				 Random rand = new Random();
+
+			        // gera um número aleatório entre 1 e 100
+			        int randomNumber = rand.nextInt(100) + 1;
+			        
 				JSONObject jsonObject1 = (JSONObject) array.get(i);
 				int a1 = Integer.parseInt("" + jsonObject1.get("Id"));
 				String a2 = "" + jsonObject1.get("Nombre");
@@ -89,8 +106,8 @@ public class Controller {
 				String a9 = "" + jsonObject1.get("Defensa Especial");
 				String a10 = "" + jsonObject1.get("Velocidad");
 							String a11 = "" ;
-							String a12 = "" ;
-							int a13 = 0;
+							String a12 = movimientos() ;
+							int a13 = randomNumber;
 							
 							dao.guardar(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 							
