@@ -3,22 +3,45 @@ package co.edu.unbosque.model;
 
 import java.util.ArrayList;
 /**
+ * Clase PokemonDAO donde se encuentra el CRUD
  * 
+ * @author NICOLAS
+ * @author JOSE
  * @author KEVIN
- * @author ANGEL
- * @author SANTIAGO
- * @author SHARICK
- * 
- * Empezamos declarando un array donde se guarda´ra los atributos de un objetos pokemon, ademas de crear metodos que nos ayudarán las CRUD
- *
  */
 public class PokemonDAO {
+	/**
+	 * Atributo de tipo ArrayList que guarda los pokemones de la pc
+	 */
 	private ArrayList<PokemonDTO> lista;
-	private ArrayList<PokemonDTO> pc;
+
+	/**
+     * Metodo constructor
+     * <b>pre</b> La existencia de los atributos <br>
+     * <b>post</b> Atributos inicilizados y/o creados<br>
+     */
 	public PokemonDAO() {
 		lista = new ArrayList<PokemonDTO>();
 	}
-
+	/**
+	 * Metodo para guardar un nuevo pokemon <b> pre </b> <b> post </b> El nuevo
+	 * pokemon es agregado a la lista del ususario<br>
+	 * 
+	 * @param id               El id a agregar
+	 * @param nombre           El nombre a agregar
+	 * @param id_general       la id_general a agregar
+	 * @param tipo             El tipo a agregar
+	 * @param ps               La ps a agregar
+	 * @param ataque           La ataque a agregar
+	 * @param defensa          La defensa a agregar
+	 * @param ataque_especial  La ataque_especial a agregar
+	 * @param defensa_especial La defensa_especial a agregar
+	 * @param velocidad        La velocidad a agregar
+	 * @param mote             La mote a agregar
+	 * @param movimientos      La movimientos a agregar
+	 * @param nivel            La nivel a agregar
+	 *
+	 */
 	public void guardar(int id, String nombre, int id_general, String tipo, String ps, String ataque, String defensa,
 			String ataque_especial, String defensa_especial, String velocidad, String mote, String movimientos,
 			int nivel) {
@@ -29,7 +52,14 @@ public class PokemonDAO {
 		lista.add(a);
 
 	}
-
+	/**
+	 * Metodo para eliminar por la posicion <b> pre </b> La existencia del pokemon
+	 * <br>
+	 * <b> post </b> El pokemon es eliminado <br>
+	 * 
+	 * @param pos La posicion por el que se va a buscar el pokemon
+	 * @return Un valor de verdad que indica si la posicion fue eliminado
+	 */
 	public boolean eliminar(int pos) {
 		try {
 			lista.remove(pos);
@@ -39,7 +69,15 @@ public class PokemonDAO {
 			return false;
 		}
 	}
-
+	/**
+	 * Metodo para modificar por la posicion <b> pre </b> La existencia del pokemon
+	 * <br>
+	 * <b> post </b> El nombre del pokemon es actuzalizado <br>
+	 * 
+	 * @param pos La posicion del pokemon en la lista
+	 * @param nom_nuevo El nuevo nombre del pokemon
+	 * @return Un valor de verdad que indica si la posicion fue eliminado
+	 */
 	public boolean actualizarNombre(int pos, String nom_nuevo) {
 		try {
 			lista.get(pos).setNombre(nom_nuevo);
@@ -50,7 +88,12 @@ public class PokemonDAO {
 			return false;
 		}
 	}
-
+	/**
+	 * Metodo para mostrar los pokemones del usuario <b> pre </b> La existencia del
+	 * archivo <br>
+	 * <b> post </b> Muestra los pokemones del usuario <br>
+	 * 
+	 */
 	public void mostrarLista() {
 
 		for (int i = 0; i < lista.size(); i++) {
@@ -71,13 +114,19 @@ public class PokemonDAO {
 		}
 
 	}
-
+	/**
+	 * @return the lista
+	 */
 	public ArrayList<PokemonDTO> getLista() {
 		return lista;
 	}
-
+	/**
+	 * @param lista the lista to set
+	 */
 	public void setLista(ArrayList<PokemonDTO> lista) {
 		this.lista = lista;
 	}
+
+	
 
 }

@@ -1,4 +1,5 @@
 package co.edu.unbosque.controller;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,70 +14,86 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import co.edu.unbosque.model.PokemonDAO;
-
+/**
+ * Clase que se encarga de controlar la logica del programa
+ * 
+ * @author Jose
+ * @author Kevin
+ * @author Nicolás
+ */
 public class Controller {
-
- private PokemonDAO dao;
- String[] arr = {"Ala de acero", "Cola férrea", "Garra metal", "Danza lluvia", "Pulpocañón", "Torbellino", "Cortefuria", "Megacuerno", "Telaraña", "Ciclón", "Dragoaliento", "Enfado", "Chispa", "Electrocañón", "Bola sombra", "Mismo destino", "Pesadilla", "Rencor", "Día soleado", "Fuego sagrado", "Rueda fuego", "Nieve polvo", "Viento hielo", "Detección", "Golpe kárate (2ª gen.)", "Golpe roca", "Inversión", "Puño dinámico", "Tajo cruzado", "Tiro vital"};
-
-	 private  ServerSocket servidor;
-	 
+	/**
+	 * Atributo tipo PokemonDAO renombrado como dao
+	 */
+	private PokemonDAO dao;
+	/**
+	 * Atributo tipo Arreglo String donde se guardan los movimientos de los pokemones
+	 */
+	String[] arr = { "Ala de acero", "Cola férrea", "Garra metal", "Danza lluvia", "Pulpocañón", "Torbellino",
+			"Cortefuria", "Megacuerno", "Telaraña", "Ciclón", "Dragoaliento", "Enfado", "Chispa", "Electrocañón",
+			"Bola sombra", "Mismo destino", "Pesadilla", "Rencor", "Día soleado", "Fuego sagrado", "Rueda fuego",
+			"Nieve polvo", "Viento hielo", "Detección", "Golpe kárate (2ª gen.)", "Golpe roca", "Inversión",
+			"Puño dinámico", "Tajo cruzado", "Tiro vital" };
+	/**
+	 * Atributo tipo ServerSocket servidor
+	 */
+	private ServerSocket servidor;
+	/**
+	 * Metodo constructor <b>post</b> se instancian los atributos <br>
+	 */
 	public Controller() {
-	dao = new PokemonDAO();
+		dao = new PokemonDAO();
 
-	   
-
-	 try {
+		try {
 			servidor = new ServerSocket(12345);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Metodo de tipo String para darle los cuatro movimientos a los pokemones aleatoriamente
+	 * @return aux los moviminetos de los pokemones
+	 */
 	public String movimientos() {
 		String aux = "";
 		for (int i = 0; i < 4; i++) {
-			
-			  Random rand = new Random();
 
-		        // gera um número aleatório entre 1 e 19
-		        int randomNumber = rand.nextInt(19) + 1;
-		       aux += arr[randomNumber]+"  ";
+			Random rand = new Random();
+
+			// gera um número aleatório entre 1 e 19
+			int randomNumber = rand.nextInt(19) + 1;
+			aux += arr[randomNumber] + "  ";
 		}
-		
+
 		return aux;
 	}
-
+	/**
+	 * Metodo que inicia los atributos del cliente y llamando al metodo leer_json para leer la base de datos
+	 * @throws IOException para que el programa no se detenga
+	 */
 	public void iniciar() throws IOException {
 		leer_json();
-	
-		
 
-		
-		   System.out.println("Puerto 12345");
+		System.out.println("Puerto 12345");
 
-	   
-	 
+		while (true) {
+			Socket cliente = (Socket) servidor.accept();
 
-	        while (true) {
-	            Socket cliente = (Socket) servidor.accept();
-	       
-	            
-
-	        	 Server  tratamento = new Server((java.net.Socket) cliente,dao.getLista());
-	             Thread t = new Thread(tratamento);
-	            // Inicia a thread para o cliente conectado
+			Server tratamento = new Server((java.net.Socket) cliente, dao.getLista());
+			Thread t = new Thread(tratamento);
+			// Inicia a thread para o cliente conectado
 //	            tratamento.code();
-	        
-	
-	
-	          
-	            t.start();
-	            
-	            System.out.println("chao");
-	        }
-		
-	}
+
+			t.start();
+
+			System.out.println("chao");
+		}
+
+	}	
+	/**
+	 * Metodo para leer la base de datos y agregarlos a la lista de pokemones del pc
+	 */
 
 	public void leer_json() {
 
@@ -88,12 +105,12 @@ public class Controller {
 			JSONArray array = (JSONArray) jsonObject.get("Pokemones");
 
 			for (int i = 0; i < array.size(); i++) {
-				
-				 Random rand = new Random();
 
-			        // gera um número aleatório entre 1 e 100
-			        int randomNumber = rand.nextInt(100) + 1;
-			        
+				Random rand = new Random();
+
+				// gera um número aleatório entre 1 e 100
+				int randomNumber = rand.nextInt(100) + 1;
+
 				JSONObject jsonObject1 = (JSONObject) array.get(i);
 				int a1 = Integer.parseInt("" + jsonObject1.get("Id"));
 				String a2 = "" + jsonObject1.get("Nombre");
@@ -105,13 +122,12 @@ public class Controller {
 				String a8 = "" + jsonObject1.get("Ataque Especial");
 				String a9 = "" + jsonObject1.get("Defensa Especial");
 				String a10 = "" + jsonObject1.get("Velocidad");
-							String a11 = "" ;
-							String a12 = movimientos() ;
-							int a13 = randomNumber;
-							
-							dao.guardar(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
-							
-			
+				String a11 = "";
+				String a12 = movimientos();
+				int a13 = randomNumber;
+
+				dao.guardar(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+
 			}
 
 		} catch (FileNotFoundException e) {
