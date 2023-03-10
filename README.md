@@ -5,6 +5,7 @@ Programa basado en la PC de pokemon, el cual se permite almacenar a pokemones de
 Program based on pokemon PC, which allows to store pokemon of the second generation in three different boxes, which are infinite, in addition to this the user can exchange the 6 pokemon in the "inventory" or "pocket", in addition to this you can add and delete pokemon from each box.
 
 ## Guia
+![App Screenshot](/IMAGENES/menu.jfif?raw=true "Imagen1")
 
 ## Creadores
 
