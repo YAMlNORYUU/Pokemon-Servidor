@@ -12,7 +12,7 @@ Estudiantes de La Universidad El Bosque:
 
 - Kevin Gonzalez (Revkelo)
 - Jose Andres (YAMlNORYUU)
-- Nicolas Machado 
+- Nicolas Machado (Nicolas19019)
 
 ## 🛠 Skills
 Java
