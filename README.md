@@ -17,6 +17,10 @@ Cuando decidimos con cuantos iniciamos se nos mostrara la PC la cual se compone 
 
 De ahí en adelante el usuario ya tendra la total libertad de intercambiar los pokemones que tiene en su "inventario" o "bolsillo" con cualquier pokemon de las 3 cajas disponibles, tambien de poder eliminar o "liberar" a cualquier pokemon de las cajas y se le permite agregar o "capturar" otros pokemones, todos estas opciones se llevan a cabo por medio de botones ya sea los que estan abajo de la PC o directamente con los botones que representan a nuestros pokemones.
 
+## Servidor
+
+Este parte del proyecto se encarga de abrir los puertos y tener la base de datos que se usara para almacenar a todos los pokemones que estan disponibles en la segunda generación.
+
 ## Creadores
 
 Estudiantes de La Universidad El Bosque:
